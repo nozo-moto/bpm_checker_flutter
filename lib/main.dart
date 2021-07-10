@@ -36,12 +36,22 @@ class BpmCheckerApp extends HookWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('BPM Checker')),
-        body: Center(
-          child: Text(formatBPM(diff)),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => handlePress(context),
-          child: const Icon(Icons.add),
+        body: GestureDetector(
+          onTap: () {
+            handlePress(context);
+          },
+          child: Container(
+            child: Center(
+              child: Text(
+                formatBPM(diff),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 48),
+              ),
+            ),
+            color: Colors.grey,
+            width: double.infinity,
+            height: double.infinity,
+          ),
         ),
       ),
     );
@@ -53,8 +63,8 @@ class BpmCheckerApp extends HookWidget {
 
   String formatBPM(int diff) {
     if (diff == 0) {
-      return "";
+      return "Let's click!";
     }
-    return "BPM" + (60000 / diff).toInt().toString();
+    return "BPM " + (60000 / diff).toInt().toString();
   }
 }
